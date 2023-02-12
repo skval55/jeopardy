@@ -1,0 +1,32 @@
+/* some colors you may find useful:
+  #115ff4
+  #060ce9
+  #28a200
+  #8d2ab5
+  #74119c
+*/
+.clues, .answer{
+  height: 150px;
+  background-color:   #060ce9;
+  color: aliceblue;
+}
+
+tbody .clues:hover{
+  background-color: #6a6ddf;
+}
+
+.fa-spinner{
+  font-size: 80px;
+}
+
+.categories{
+  color: aliceblue;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.answer{
+  background-color:   #28a200;
+}
+table {
+  border-collapse:separate;}
+ 
