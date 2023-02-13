@@ -39,7 +39,7 @@ async function getCategoryIds(response) {
       usedIds.push(catId);
       ids.push(catId);
     } else {
-      let newCat = await axios.get("http://jservice.io/api/random?count=1");
+      let newCat = await axios.get("https://jservice.io/api/random?count=1");
       let newCatId = newCat.data[0].category_id;
       console.log("new", newCatId);
       usedIds.push(newCatId);
@@ -172,7 +172,7 @@ async function setupAndStart() {
   //   });
   showLoadingView();
   categories = [];
-  let response = await axios.get("http://jservice.io/api/random?count=6");
+  let response = await axios.get("https://jservice.io/api/random?count=6");
   categories = [];
   getCategoryIds(response);
 }
@@ -184,4 +184,7 @@ startBtn.addEventListener("click", setupAndStart);
 
 /** On page load, add event handler for clicking clues */
 $("#spin-container").hide();
+// $(window).on("load", function () {
+//   $("#spin-container").hide();
+// });
 // TODO
