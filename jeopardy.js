@@ -70,13 +70,33 @@ async function getCategory(catId) {
         `);
     const clues = response.data.clues;
     category.title = response.data.title;
-    for (let i = 0; i < clues.length; i++) {
+    let usedClues = [];
+    for (
+      let i = 0;
+      clues.length > 5 ? usedClues.length < 5 : usedClues.length < clues.length;
+      i++
+    ) {
+      let random = Math.floor(Math.random() * clues.length);
       const clue = {};
-      clue.question = clues[i].question;
-      clue.answer = clues[i].answer;
-      clue.showing = null;
-      category.clues.push(clue);
+      if (!usedClues.includes(random)) {
+        console.log(clues.length);
+        console.log("random is", random);
+        clue.question = clues[random].question;
+        clue.answer = clues[random].answer;
+        usedClues.push(random);
+        clue.showing = null;
+        category.clues.push(clue);
+      }
+      // clue.question = clues[i].question;
+      // clue.answer = clues[i].answer;
     }
+    // for (let i = 0; i < clues.length; i++) {
+    //   const clue = {};
+    //   clue.question = clues[i].question;
+    //   clue.answer = clues[i].answer;
+    //   clue.showing = null;
+    //   category.clues.push(clue);
+    // }
     categories.push(category);
   }
   fillTable(categories);
