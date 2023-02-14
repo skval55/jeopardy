@@ -61,7 +61,6 @@ async function getCategoryIds(response) {
  *   ]
  */
 
-// make way to pull 5 random questions instead of first 5
 async function getCategory(catId) {
   for (let i = 0; i < catId.length; i++) {
     let category = { clues: [] };
@@ -70,6 +69,7 @@ async function getCategory(catId) {
         `);
     const clues = response.data.clues;
     category.title = response.data.title;
+    // gets random clue from category
     let usedClues = [];
     for (
       let i = 0;
@@ -79,24 +79,13 @@ async function getCategory(catId) {
       let random = Math.floor(Math.random() * clues.length);
       const clue = {};
       if (!usedClues.includes(random)) {
-        console.log(clues.length);
-        console.log("random is", random);
         clue.question = clues[random].question;
         clue.answer = clues[random].answer;
         usedClues.push(random);
         clue.showing = null;
         category.clues.push(clue);
       }
-      // clue.question = clues[i].question;
-      // clue.answer = clues[i].answer;
     }
-    // for (let i = 0; i < clues.length; i++) {
-    //   const clue = {};
-    //   clue.question = clues[i].question;
-    //   clue.answer = clues[i].answer;
-    //   clue.showing = null;
-    //   category.clues.push(clue);
-    // }
     categories.push(category);
   }
   fillTable(categories);
